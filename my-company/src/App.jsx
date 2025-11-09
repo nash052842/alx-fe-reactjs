@@ -1,19 +1,15 @@
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Services from "./pages/Services";
-import Contact from "./pages/Contact";
-import Navbar from "./Components/Navbar";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./components/Home";
+import About from "./components/About";
+import Services from "./components/Services";
+import Contact from "./components/Contact"; // adjust path if Contact is in ./pages
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <Router>
-      <Navbar>
-        <Link to="/" style={{ margin: "0 10px" }}>Home</Link>
-        <Link to="/about" style={{ margin: "0 10px" }}>About</Link>
-        <Link to="/services" style={{ margin: "0 10px" }}>Services</Link>
-        <Link to="/contact" style={{ margin: "0 10px" }}>Contact</Link>
-      </Navbar>
+      {/* Navbar should not have children here; links are inside Navbar itself */}
+      <Navbar />
 
       <Routes>
         <Route path="/" element={<Home />} />
