@@ -5,10 +5,12 @@ import Services from "./components/Services";
 import Contact from "./components/Contact"; // adjust path if Contact is in ./pages
 import Navbar from "./components/Navbar";
 
+
 function App() {
   return (
     <Router>
       {/* Navbar should not have children here; links are inside Navbar itself */}
+      <Navbar />
       <Navbar />
 
       <Routes>
