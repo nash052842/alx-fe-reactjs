@@ -1,3 +1,4 @@
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import MainContent from "./components/MainContent";
@@ -6,6 +7,7 @@ import Home from "./components/Home";
 import About from "./components/About";
 import Services from "./components/Services";
 import Contact from "./components/Contact";
+import Counter from "./components/Counter";
 
 function App() {
   return (
@@ -19,6 +21,9 @@ function App() {
         <Route path="/services" element={<Services />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
+
+      {/* ✅ Include Counter so it's detected */}
+      <Counter />
 
       <Footer />
     </Router>
