@@ -3,16 +3,17 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Services from "./pages/Services";
 import Contact from "./pages/Contact";
+import Navbar from "./pages/Navbar";
 
 function App() {
   return (
     <Router>
-      <nav style={{ padding: "10px", background: "#f0f0f0" }}>
+      <Navbar>
         <Link to="/" style={{ margin: "0 10px" }}>Home</Link>
         <Link to="/about" style={{ margin: "0 10px" }}>About</Link>
         <Link to="/services" style={{ margin: "0 10px" }}>Services</Link>
         <Link to="/contact" style={{ margin: "0 10px" }}>Contact</Link>
-      </nav>
+      </Navbar>
 
       <Routes>
         <Route path="/" element={<Home />} />
