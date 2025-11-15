@@ -1,33 +1,35 @@
+// src/components/RecipeDetails.jsx
 import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { useRecipeStore } from '../store/recipeStore';
 import EditRecipeForm from './EditRecipeForm';
 import DeleteRecipeButton from './DeleteRecipeButton';
-import { Link } from 'react-router-dom';
 
-const RecipeList = () => {
-  const recipes = useRecipeStore((state) => state.recipes);
-  const [editingId, setEditingId] = useState(null);
+const RecipeDetails = () => {
+  const { id } = useParams(); // get recipe ID from URL
+  const recipeId = parseInt(id, 10);
+  const recipe = useRecipeStore(state =>
+    state.recipes.find(recipe => recipe.id === recipeId)
+  );
+
+  const [isEditing, setIsEditing] = useState(false);
+
+  if (!recipe) return <p>Recipe not found.</p>;
 
   return (
     <div>
-      {recipes.map((recipe) => (
-        <div key={recipe.id}>
-          <h3>
-            <Link to={`/recipe/${recipe.id}`}>{recipe.title}</Link>
-          </h3>
+      {isEditing ? (
+        <EditRecipeForm recipe={recipe} onClose={() => setIsEditing(false)} />
+      ) : (
+        <>
+          <h1>{recipe.title}</h1>
           <p>{recipe.description}</p>
-          {editingId === recipe.id ? (
-            <EditRecipeForm recipe={recipe} onClose={() => setEditingId(null)} />
-          ) : (
-            <>
-              <button onClick={() => setEditingId(recipe.id)}>Edit</button>
-              <DeleteRecipeButton recipeId={recipe.id} />
-            </>
-          )}
-        </div>
-      ))}
+          <button onClick={() => setIsEditing(true)}>Edit</button>
+          <DeleteRecipeButton recipeId={recipe.id} />
+        </>
+      )}
     </div>
   );
 };
 
-export default RecipeList;
+export default RecipeDetails;
