@@ -1,5 +1,5 @@
 // RecipeList component
-  import { useRecipeStore } from '../../store/recipeStore';
+  import { useRecipeStore } from '../store/recipeStore';
   import { useRecipeStore } from '../store/recipeStore';
 
 
