@@ -10,8 +10,9 @@ const EditRecipeForm = ({ recipe, onClose }) => {
   const [ingredientsText, setIngredientsText] = useState((recipe.ingredients || []).join(', '));
   const [prepTime, setPrepTime] = useState(recipe.prepTime ?? '');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
     const ingredients = ingredientsText
       .split(',')
       .map((s) => s.trim())
@@ -35,7 +36,7 @@ const EditRecipeForm = ({ recipe, onClose }) => {
         Title
         <input
           value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={(event) => setTitle(event.target.value)}
           className="w-full border p-2 rounded mt-1"
           required
         />
@@ -45,7 +46,7 @@ const EditRecipeForm = ({ recipe, onClose }) => {
         Description
         <textarea
           value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          onChange={(event) => setDescription(event.target.value)}
           className="w-full border p-2 rounded mt-1"
         />
       </label>
@@ -54,7 +55,7 @@ const EditRecipeForm = ({ recipe, onClose }) => {
         Ingredients (comma separated)
         <input
           value={ingredientsText}
-          onChange={(e) => setIngredientsText(e.target.value)}
+          onChange={(event) => setIngredientsText(event.target.value)}
           className="w-full border p-2 rounded mt-1"
         />
       </label>
@@ -64,7 +65,7 @@ const EditRecipeForm = ({ recipe, onClose }) => {
         <input
           type="number"
           value={prepTime}
-          onChange={(e) => setPrepTime(e.target.value)}
+          onChange={(event) => setPrepTime(event.target.value)}
           className="w-full border p-2 rounded mt-1"
           min="0"
         />
