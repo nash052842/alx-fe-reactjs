@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom';
 import { useRecipeStore } from '../store/recipeStore';
 import EditRecipeForm from './EditRecipeForm';
 import DeleteRecipeButton from './DeleteRecipeButton';
+import React from 'react';
+import { useRecipeStore } from './recipeStore';
 
 const RecipeDetails = () => {
   const { id } = useParams(); // get recipe ID from URL
@@ -32,4 +34,23 @@ const RecipeDetails = () => {
   );
 };
 
+const RecipeList = () => {
+  const filteredRecipes = useRecipeStore((state) => state.filteredRecipes);
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+      {filteredRecipes.length === 0 ? (
+        <p>No recipes found.</p>
+      ) : (
+        filteredRecipes.map((recipe) => (
+          <div key={recipe.id} className="border p-4 rounded shadow">
+            <h2 className="font-bold text-lg">{recipe.title}</h2>
+            <p>Ingredients: {recipe.ingredients.join(', ')}</p>
+            <p>Prep Time: {recipe.prepTime} min</p>
+          </div>
+        ))
+      )}
+    </div>
+  );
+};  
 export default RecipeDetails;
