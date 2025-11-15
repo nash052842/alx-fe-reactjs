@@ -18,4 +18,9 @@ function App() {
   );
 }
 
+const [search, setSearch] = useState('');
+const filteredRecipes = recipes.filter((r) =>
+  r.title.toLowerCase().includes(search.toLowerCase())
+);
+
 export default App;
