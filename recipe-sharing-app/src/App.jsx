@@ -8,10 +8,7 @@ function App() {
     <Router>
       <div>
         <h1>Recipe Sharing App</h1>
-        {/* Add Recipe Form always visible */}
         <AddRecipeForm />
-
-        {/* Routes for listing and viewing recipes */}
         <Routes>
           <Route path="/" element={<RecipeList />} />
           <Route path="/recipe/:id" element={<RecipeDetails />} />
