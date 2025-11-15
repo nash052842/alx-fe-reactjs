@@ -1,0 +1,41 @@
+// src/components/RecipeList.jsx (excerpt)
+import { useRecipeStore } from '../recipeStore';
+import { Link } from 'react-router-dom';
+import React from 'react';
+
+export const RecipeList = () => {
+  const filteredRecipes = useRecipeStore((state) => state.filteredRecipes);
+  const favorites = useRecipeStore((state) => state.favorites);
+  const addFavorite = useRecipeStore((state) => state.addFavorite);
+  const removeFavorite = useRecipeStore((state) => state.removeFavorite);
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+      {filteredRecipes.map((recipe) => {
+        const isFavorited = favorites.includes(recipe.id);
+        return (
+          <div
+            key={recipe.id}
+            className="border p-4 rounded shadow hover:shadow-lg transition"
+          >
+            <h2 className="text-blue-600 font-bold text-lg hover:underline">
+              <Link to={`/recipe/${recipe.id}`}>{recipe.title}</Link>
+            </h2>
+            <p>Ingredients: {recipe.ingredients.join(', ')}</p>
+            <p>Prep Time: {recipe.prepTime} min</p>
+            <button
+              onClick={() =>
+                isFavorited ? removeFavorite(recipe.id) : addFavorite(recipe.id)
+              }
+              className={`mt-2 px-2 py-1 rounded ${
+                isFavorited ? 'bg-red-400 text-white' : 'bg-green-400 text-white'
+              }`}
+            >
+              {isFavorited ? 'Remove from Favorites' : 'Add to Favorites'}
+            </button>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
