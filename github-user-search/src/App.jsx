@@ -1,8 +1,6 @@
 
 import React from "react";
-import SearchBar from "./components/SearchBar";
->>>>>>> 8ff9448 (initial commit)
-
+import SearchBar from "./components/SearchBar"
 function App() {
   return (
     <div className="App">
