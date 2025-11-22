@@ -21,8 +21,7 @@ dist-ssr
 *.ntvs*
 *.njsproj
 *.sln
-*.sw?
-<<<<<<< HEAD
+*.sw
 .env
 =======
 .env
