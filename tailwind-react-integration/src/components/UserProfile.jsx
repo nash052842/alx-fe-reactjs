@@ -9,7 +9,7 @@ function UserProfile() {
       />
 
       {/* User Name */}
-      <h1 className="text-lg sm:text-xl md:text-2xl text-blue-800 my-2 sm:my-4 text-center">
+      <h1 className="text-lg sm:text-xl md:text-xl text-blue-800 my-2 sm:my-4 text-center">
         John Doe
       </h1>
 
