@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import data from "../data.json";
 
 function RecipeDetail() {
   const { id } = useParams();
-  const recipe = data.find((r) => r.id === parseInt(id));
+  const [recipe, setRecipe] = useState(null);
+
+  useEffect(() => {
+    // Simulate fetching data based on ID
+    const foundRecipe = data.find((r) => r.id === parseInt(id));
+    setRecipe(foundRecipe || null);
+  }, [id]);
 
   if (!recipe) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 p-6">
         <h2 className="text-2xl font-bold mb-4">Recipe not found</h2>
         <Link to="/" className="text-blue-500 hover:underline">
           Back to Home
@@ -19,10 +25,7 @@ function RecipeDetail() {
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">
-      <Link
-        to="/"
-        className="text-blue-500 hover:underline mb-4 inline-block"
-      >
+      <Link to="/" className="text-blue-500 hover:underline mb-4 inline-block">
         ← Back to Home
       </Link>
 
