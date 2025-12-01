@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 function AddRecipeForm({ onAddRecipe }) {
   const [title, setTitle] = useState("");
   const [ingredients, setIngredients] = useState("");
-  const [instructions, setInstructions] = useState("");
+  const [steps, setSteps] = useState(""); // renamed
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
@@ -14,7 +14,7 @@ function AddRecipeForm({ onAddRecipe }) {
     if (!ingredients.trim()) newErrors.ingredients = "Ingredients are required";
     else if (ingredients.split(",").length < 2)
       newErrors.ingredients = "Please enter at least two ingredients, separated by commas";
-    if (!instructions.trim()) newErrors.instructions = "Instructions are required";
+    if (!steps.trim()) newErrors.steps = "Preparation steps are required"; // renamed
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -25,16 +25,16 @@ function AddRecipeForm({ onAddRecipe }) {
     if (!validateForm()) return;
 
     const newRecipe = {
-      id: Date.now(), // simple unique ID
+      id: Date.now(),
       title: title.trim(),
       ingredients: ingredients.split(",").map((i) => i.trim()),
-      instructions: instructions.trim(),
-      summary: instructions.substring(0, 100) + "...", // optional summary
-      image: "https://via.placeholder.com/600x400", // placeholder image
+      steps: steps.trim(), // renamed
+      summary: steps.substring(0, 100) + "...", // optional summary
+      image: "https://via.placeholder.com/600x400",
     };
 
-    onAddRecipe(newRecipe); // pass new recipe to parent component
-    navigate("/"); // redirect to home page
+    onAddRecipe(newRecipe);
+    navigate("/");
   };
 
   return (
@@ -75,19 +75,19 @@ function AddRecipeForm({ onAddRecipe }) {
           )}
         </div>
 
-        {/* Instructions */}
+        {/* Steps */}
         <div className="mb-4">
           <label className="block mb-1 font-semibold text-gray-700">
             Preparation Steps
           </label>
           <textarea
-            value={instructions}
-            onChange={(e) => setInstructions(e.target.value)}
+            value={steps}
+            onChange={(e) => setSteps(e.target.value)}
             className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
             rows="4"
           />
-          {errors.instructions && (
-            <p className="text-red-500 text-sm mt-1">{errors.instructions}</p>
+          {errors.steps && (
+            <p className="text-red-500 text-sm mt-1">{errors.steps}</p>
           )}
         </div>
 
