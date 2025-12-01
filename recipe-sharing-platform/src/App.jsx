@@ -1,22 +1,16 @@
-import React, { useState, useEffect } from "react";
-import data from "../data.json";
-
-function HomePage() {
-  const [recipes, setRecipes] = useState([]);
-
-  useEffect(() => {
-    setRecipes(data);
-  }, []);
-
-  return (
-    <div className="container mx-auto p-4">
-      {/* Recipe grid code */}
-    </div>
-  );
-}
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import HomePage from "./components/HomePage";
+import RecipeDetail from "./components/RecipeDetail";
 
 function App() {
-  return <HomePage />;
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/recipe/:id" element={<RecipeDetail />} />
+      </Routes>
+    </Router>
+  );
 }
 
 export default App;
