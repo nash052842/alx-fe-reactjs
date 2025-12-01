@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import data from "../data.json";
+import data from "../data.json"; // Make sure data.json is in src/
 
 function HomePage() {
   const [recipes, setRecipes] = useState([]);
 
+  // Load data from data.json on component mount
   useEffect(() => {
     setRecipes(data);
   }, []);
@@ -14,7 +15,8 @@ function HomePage() {
         🍽️ Recipe Sharing Platform
       </h1>
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {/* Recipe cards grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {recipes.map((recipe) => (
           <div
             key={recipe.id}
