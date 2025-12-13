@@ -7,7 +7,7 @@ import  Home from "./pages/Home";
 import  ProfileDetails from "./pages/ProfileDetails"; 
 import  ProfileSettings from "./pages/ProfileSettings";
 import BlogPost from "./Pages/BlogPost";  
-import Profile from "./Pages/Profile";
+import Profile from "./components/Profile";
 
 
 function App() {
