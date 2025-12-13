@@ -1,14 +1,9 @@
-
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import  Contact from "./pages/Contact";
-import  About from "./pages/About";
-import  Home from "./pages/Home";
-import  ProfileDetails from "./pages/ProfileDetails"; 
-import  ProfileSettings from "./pages/ProfileSettings";
-import BlogPost from "./Pages/BlogPost";  
-import Profile from "./components/Profile";
-
+import Home from "./Pages/Home";
+import About from "./Pages/About";
+import Contact from "./Pages/Contact";
+import BlogPost from "./Pages/BlogPost"; // component to display a single blog post
 
 function App() {
   return (
@@ -25,6 +20,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        {/* Dynamic route */}
+        <Route path="/blog/:id" element={<BlogPost />} />
       </Routes>
     </Router>
   );
